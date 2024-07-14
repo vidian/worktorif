@@ -1,0 +1,46 @@
+<p>company-list works!</p>
+<!-- <table class="min-w-full bg-white">
+  <tbody>
+    <tr class="bg-gray-100" *ngFor="let company of companies">
+      <td class="border px-4 py-2">Company Image {{ company.company_name }}</td>
+      <td class="border px-4 py-2" rowspan="4">
+        <div>Data 1</div>
+        <div>Data 2</div>
+        <div>Data 3</div>
+        <div>Data 4</div>
+      </td>
+      <td class="border px-4 py-2" rowspan="4">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Aksi
+        </button>
+      </td>
+      <td class="border px-4 py-2" rowspan="4">
+        <div class="space-y-2">
+          <button
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Tombol 1
+          </button>
+          <button
+            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Tombol 2
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Tombol 3
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+<table>
+  <tr *ngFor="let item of companies">
+    <td>{{ item.company_name }}</td>
+    <td>{{ item.company_registration_number }}</td>
+  </tr>
+</table>

@@ -1,0 +1,104 @@
+<h1 class="text-3xl font-bold">Company Profile</h1>
+<div class="container-sm mx-auto pt-5 font-medium">
+  <div class="grid grid-cols-4 gap-5">
+    <div>
+      <h2 class="py-2 text-lg">
+        Company Name <span class="text-red-500">*</span>
+      </h2>
+      <input
+        type="text"
+        class="text px-3 py-3 w-full rounded-lg"
+        name="companyname"
+        id="companyname"
+        placeholder="Company Name"
+        required
+        [(ngModel)]="companyname"
+      />
+      <p class="text-red-500 text-xs" [hidden]="!warnings.companyname">
+        Please fill in the company name first
+      </p>
+      <h2 class="py-2 text-lg">
+        Company Registration Number <span class="text-red-500">*</span>
+      </h2>
+      <input
+        [(ngModel)]="companyreg"
+        type="text"
+        class="text px-3 py-3 w-full rounded-lg"
+        name="companyreg"
+        id="companyreg"
+        placeholder="Company Registraion Number"
+        required
+      />
+      <p class="text-red-500 text-xs" [hidden]="!warnings.companyreg">
+        Please fill in the company registration number first
+      </p>
+      <h2 class="py-2 text-lg">
+        Portal Url <span class="text-red-500">*</span>
+      </h2>
+      <input
+        [(ngModel)]="companyurl"
+        type="text"
+        class="text px-3 py-3 w-full rounded-lg"
+        name="companyurl"
+        id="companyurl"
+        placeholder="Portal Url"
+        required
+      />
+      <p class="text-red-500 text-xs" [hidden]="!warnings.companyurl">
+        Please fill in the company Url first
+      </p>
+    </div>
+    <div>
+      <h2 class="py-2 text-lg">
+        Phone Number <span class="text-red-500">*</span>
+      </h2>
+      <input
+        [(ngModel)]="companynumber"
+        type="number"
+        class="number px-3 py-3 w-full rounded-lg"
+        name="companynumber"
+        id="companynumber"
+        placeholder="Phone Number"
+        required
+      />
+      <p class="text-red-500 text-xs" [hidden]="!warnings.companynumber">
+        Please fill in the company number first
+      </p>
+      <h2 class="py-2 text-lg">Address <span class="text-red-500">*</span></h2>
+      <input
+        [(ngModel)]="companyaddress"
+        class="px-3 py-3 w-full rounded-lg"
+        type="text"
+        name="companyadress"
+        id="companyaddress"
+        required
+      />
+      <p class="text-red-500 text-xs" [hidden]="!warnings.companyaddress">
+        Please fill in the company address first
+      </p>
+      <h2 class="py-2 text-lg">
+        Time Zone <span class="text-red-500">*</span>
+      </h2>
+      <select
+        class="px-3 py-3 w-full rounded-lg"
+        name="timezone"
+        id="timezone"
+        required
+      >
+        <option value="">Time Zone</option>
+      </select>
+      <div class="py-4 flex justify-end">
+        <button
+          type="submit"
+          class="mr-3 py-3 px-4 bg-blue-300 rounded-3xl ml-4 cursor:pointer hover:bg-blue-400"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn-main" (click)="submitCompany()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

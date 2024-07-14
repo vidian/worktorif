@@ -1,35 +1,54 @@
 <div class="row flex justify-center mt-3">
-    <div class="bg-[#F3EBE5] w-5/6 h-screen rounded-lg">
-        <div class="row grid grid-cols-2 gap-5">
-            <div>
-                <h4>contoh</h4>
-            </div>
-            <div class="py-10 px-16 ">
-                <div class="mb-10">
-                    <h3 class="text-4xl asap-font font-semibold">Worktorif</h3>
-                    <p>Welcom to worktorif, please login with your data.</p>
-                </div>
-
-                <div class="row mt-5">
-                    <button class="w-full rounded-xl bg-white shadow-lg py-3 font-semibold hover:bg-slate-100 hover:shadow-sm"><span class="fa-brands fa-google"></span> Sign In With Google</button>
-                </div>
-
-                <div class="row text-center 2mt-5">
-                    <p>or</p>
-                </div>
-
-                <div class="row">
-                    <input type="text" name="" id="" class="w-full py-2 px-5 rounded-xl my-2 focus:outline-[#FAE0C1]" placeholder="Username">
-                    <input type="password" name="" id="" class="w-full py-2 px-5 rounded-xl my-2 focus:outline-[#FAE0C1]" placeholder="Password">
-                    <div class="text-right">
-                        <a class="hover:text-black text-[#969395] cursor-pointer" href="/">Forgot your password?</a>
-                    </div>
-                </div>
-
-                <div class="row mt-4">
-                    <button class="w-full btn-main">Login</button>
-                </div>
-            </div>
+  <div class="bg-[#F3EBE5] w-5/6 h-screen rounded-lg">
+    <div class="row grid grid-cols-2 gap-5">
+      <div>
+        <h4>contoh</h4>
+      </div>
+      <div class="py-10 px-16">
+        <div class="mb-10">
+          <h3 class="text-4xl asap-font font-semibold">Worktorif</h3>
+          <p>Welcom to worktorif, please login with your data.</p>
         </div>
+
+        <div class="row mt-5">
+          <button
+            (click)="signInWithGoogle()"
+            class="w-full rounded-xl bg-white shadow-lg py-3 font-semibold hover:bg-slate-100 hover:shadow-sm"
+          >
+            <span class="fa-brands fa-google"></span> Sign In With Google
+          </button>
+        </div>
+
+        <div class="row text-center 2mt-5">
+          <p>or</p>
+        </div>
+
+        <div class="row">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="w-full py-2 px-5 rounded-xl my-2 focus:outline-[#FAE0C1]"
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="w-full py-2 px-5 rounded-xl my-2 focus:outline-[#FAE0C1]"
+            placeholder="Password"
+          />
+          <div class="text-right">
+            <a class="hover:text-black text-[#969395] cursor-pointer" href="/"
+              >Forgot your password?</a
+            >
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <button (click)="signInLogin()" class="w-full btn-main">Login</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
