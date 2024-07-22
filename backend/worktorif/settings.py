@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import logging
+# logging.basicConfig(level=logging.DEBUG)
+import os
+import platform
+import stat
+import atexit
+from sshtunnel import SSHTunnelForwarder
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -89,17 +98,55 @@ WSGI_APPLICATION = 'worktorif.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Initialize environment variables
+env = environ.Env()
+# environ.Env.read_env()  # Reads the .env file
+
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(os.path.dirname(__file__), '.env'))  # Ensure this path is correct
+
+
+# Setting up the SSH tunnel
+SSH_ADDRESS = env('SSH_ADDRESS')
+SSH_PORT = env.int('SSH_PORT')
+SSH_USER = env('SSH_USER')
+SSH_KEY = env('SSH_KEY')
+SSH_PASSPHRASE = env('SSH_PASSPHRASE', default=None)
+
+# Ensure the private key file exists and has correct permissions
+if not os.path.isfile(SSH_KEY):
+    raise ValueError(f"Private key file {SSH_KEY} does not exist")
+
+# Check if the OS is not Windows, then check the permissions
+if platform.system() != 'Windows':
+    if os.stat(SSH_KEY).st_mode & 0o777 != 0o600:
+        raise ValueError(f"Private key file {SSH_KEY} must have permissions 600")
+
+# Create the SSH tunnel
+tunnel = SSHTunnelForwarder(
+    (SSH_ADDRESS, SSH_PORT),
+    ssh_username=SSH_USER,
+    ssh_pkey=SSH_KEY,
+    ssh_private_key_password=SSH_PASSPHRASE,
+    remote_bind_address=('localhost', 3306),
+    local_bind_address=('127.0.0.1', 3306)
+)
+
+tunnel.start()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ceo', #namadb
-        'USER': 'root', #USERDB
-        'PASSWORD': '', #PASSWORDDB
-        'HOST': 'localhost', 
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': '127.0.0.1', 
         'PORT' : '3306',
     }
 }
 
+# Add a cleanup handler to stop the tunnel when the Django server stops
+atexit.register(tunnel.stop)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

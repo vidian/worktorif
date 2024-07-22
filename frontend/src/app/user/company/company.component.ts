@@ -58,5 +58,6 @@ export class CompanyComponent {
 
   cancel() {
     window.location.reload();
+    console.log('oke');
   }
 }
